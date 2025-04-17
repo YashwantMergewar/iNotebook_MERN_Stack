@@ -14,7 +14,7 @@ const NoteState = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjdkMTA5NzFlMDQ5MWE1ZDU1OGM4NjQzIn0sImlhdCI6MTc0MTgzNTc5OX0._VCpBYnXxX3aed7-rBTxojtukn_RHLL5Gpe7HrAKv0k"
+          "auth-token": localStorage.getItem("token")
         }
       });
       if (!response.ok) {
@@ -36,7 +36,7 @@ const NoteState = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjdkMTA5NzFlMDQ5MWE1ZDU1OGM4NjQzIn0sImlhdCI6MTc0MTgzNTc5OX0._VCpBYnXxX3aed7-rBTxojtukn_RHLL5Gpe7HrAKv0k"
+          "auth-token": localStorage.getItem("token")
         },
         body: JSON.stringify({title, description, tag})
       });
@@ -60,14 +60,14 @@ const NoteState = (props) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjdkMTA5NzFlMDQ5MWE1ZDU1OGM4NjQzIn0sImlhdCI6MTc0MTgzNTc5OX0._VCpBYnXxX3aed7-rBTxojtukn_RHLL5Gpe7HrAKv0k"
+          "auth-token": localStorage.getItem("token")
         }
       });
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      const json = await response.json();
+      // const json = await response.json();
       
     } catch (error) {
       console.error(error.message);
@@ -86,7 +86,7 @@ const NoteState = (props) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjdkMTA5NzFlMDQ5MWE1ZDU1OGM4NjQzIn0sImlhdCI6MTc0MTgzNTc5OX0._VCpBYnXxX3aed7-rBTxojtukn_RHLL5Gpe7HrAKv0k"
+          "auth-token": localStorage.getItem("token")
         },
         body: JSON.stringify({title, description, tag})
       });
@@ -94,7 +94,7 @@ const NoteState = (props) => {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      const json = await response.json();
+      // const json = await response.json();
     } catch (error) {
       console.error(error.message);
     }

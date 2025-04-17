@@ -28,8 +28,8 @@ const Login = () => {
               //localStorage is used to store data in the browser and it is not cleared when the page is reloaded
               //and it is not provided by react, it is provided by the browser
                //redirect to the home page after login
-               navigate("/");
                showAlert("Logged In successfully", "success");
+               navigate("/");
             } 
             else{
               //show error
