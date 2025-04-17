@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
+import alertContext from '../context/alert/alertContext';
+
 // useNavigate is a hook that returns a function that lets you navigate to a different route programmatically. 
 // It is used to redirect the user to a different page after login. 
 const Login = () => {
+    const {showAlert} = useContext(alertContext)
     const[credentials, setCredentials] = useState({email:"", password: ""})
     let navigate = useNavigate(); 
     const handleSubmit = async (e) => {
@@ -26,10 +29,11 @@ const Login = () => {
               //and it is not provided by react, it is provided by the browser
                //redirect to the home page after login
                navigate("/");
+               showAlert("Logged In successfully", "success");
             } 
             else{
               //show error
-              alert("Invalid credentials")
+              showAlert("Invalid credentials", "danger");
             }
           } catch (error) {
             console.error(error.message);

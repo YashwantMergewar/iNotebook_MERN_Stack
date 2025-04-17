@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
+import alertContext from '../context/alert/alertContext';
 const Notes = () => {
   const context = useContext(NoteContext);
+  const {showAlert} = useContext(alertContext)
   const { notes, getNotes, editNote} = context;
   
   useEffect(() => {
@@ -24,13 +26,14 @@ const Notes = () => {
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click(); // Prevent the default form submission behavior means it prevent the reload while submitting the form
     document.activeElement.blur(); // remove the focus from the button after clicking it
+    showAlert("Note Updated Successfully", "success");
   }
   const onChange = (e) => {
     setNote({...note, [e.target.name]: e.target.value})
   }
   return (
     <>
-      <AddNote />
+      <AddNote/>
       <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Launch demo modal
       </button>

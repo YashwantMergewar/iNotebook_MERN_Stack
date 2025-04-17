@@ -1,13 +1,16 @@
 import React, {useContext, useState} from 'react'
 import NoteContext from '../context/notes/noteContext'
+import alertContext from '../context/alert/alertContext'
 const AddNote = () => {
     const context = useContext(NoteContext);
+    const {showAlert} = useContext(alertContext);
     const {addNote} = context;
     const [note, setNote] = useState({title: "", description: "", tag: ""})
     const handleClick = (e)=>{
       e.preventDefault(); // Prevent the default form submission behavior means it prevent the reload while submitting the form
       addNote(note.title, note.description, note.tag);
       setNote({title: "", description: "", tag: ""})
+      showAlert("Note Added Successfully", "success");
     }
     const onChange = (e) => {
       setNote({...note, [e.target.name]: e.target.value})
